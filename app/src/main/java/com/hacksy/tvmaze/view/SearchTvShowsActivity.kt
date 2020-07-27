@@ -15,7 +15,7 @@ import com.hacksy.tvmaze.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_home_tv_shows.*
 import kotlinx.android.synthetic.main.layout_error.*
 
-class HomeTvShowsActivity : AppCompatActivity() {
+class SearchTvShowsActivity : AppCompatActivity() {
 
 
     private lateinit var viewModel: TvShowsViewModel
@@ -45,7 +45,7 @@ class HomeTvShowsActivity : AppCompatActivity() {
 
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)
     }
-    
+
     //TODO: Use Timber instead of Log.v
     private val renderTvShows= Observer<List<TvShows>> {
         Log.v(TAG, "data updated $it")
@@ -77,6 +77,6 @@ class HomeTvShowsActivity : AppCompatActivity() {
     //If you require updated data, you can call the method "loadMuseum" here
     override fun onResume() {
         super.onResume()
-        viewModel.retrieveTvShows()
+        viewModel.listTvShows()
     }
 }

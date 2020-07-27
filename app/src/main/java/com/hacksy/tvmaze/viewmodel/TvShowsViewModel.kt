@@ -22,11 +22,28 @@ class TvShowsViewModel(private val remoteRepository: TvShowsRemoteDataSource,
 
     val tvShows = dbRepository.getTvShows()
 
-    fun retrieveTvShows(){
+    fun listTvShows(page : Int = 1){
         _isViewLoading.postValue(true)
         viewModelScope.launch {
             var  result: OperationResult<TvShows> = withContext(Dispatchers.IO){
-                remoteRepository.retrieveTvShows()
+                remoteRepository.listTvShows(page)
+            }
+            _isViewLoading.postValue(false)
+            Log.w("TAGTAG",result.toString());
+            if(result is OperationResult.Success){
+                withContext((Dispatchers.IO)) {
+                    result.data?.let {
+                        if (it.isNotEmpty()) dbRepository.sync(it)
+                    }
+                }
+            }
+        }
+    }
+    fun searchTvShows(show : String){
+        _isViewLoading.postValue(true)
+        viewModelScope.launch {
+            var  result: OperationResult<TvShows> = withContext(Dispatchers.IO){
+                remoteRepository.searchTvShows(show)
             }
             _isViewLoading.postValue(false)
             Log.w("TAGTAG",result.toString());

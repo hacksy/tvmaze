@@ -6,6 +6,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 object ApiClient {
 
@@ -35,7 +36,9 @@ object ApiClient {
     }
 
     interface ServicesApiInterface{
-        @GET("search/shows?q=girls")
-        suspend fun tvShows(): Response<List<TvShowsResponse>>
+        @GET("shows?page={page}")
+        suspend fun listTvShows(@Path("page")page: Int): Response<List<TvShowsResponse>>
+        @GET("search/shows?q={query}")
+        suspend fun searchTvShows(@Path("query")show: String): Response<List<TvShowsResponse>>
     }
 }

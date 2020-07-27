@@ -5,5 +5,7 @@ import com.hacksy.tvmaze.model.TvShows
 
 
 interface TvShowsRemoteDataSource {
-    suspend fun retrieveTvShows(): OperationResult<TvShows>
+    suspend fun listTvShows(page:Int): OperationResult<TvShows>
+    suspend fun searchTvShows( show : String): OperationResult<TvShows>
+
 }
