@@ -12,5 +12,5 @@ data class TvSeriesDTO(
     @ColumnInfo(name = "genres") val genres: String,
     @ColumnInfo(name = "image") val image: String,
     @ColumnInfo(name = "summary") val summary: String,
-    @Embedded val address: ScheduleDTO?
+    @Embedded val schedule: ScheduleDTO?
 )
