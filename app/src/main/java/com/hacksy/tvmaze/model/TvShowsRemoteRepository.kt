@@ -6,9 +6,9 @@ import com.hacksy.tvmaze.data.remote.TvShowsRemoteDataSource
 
 class TvShowsRemoteRepository: TvShowsRemoteDataSource {
 
-    override suspend fun retrieveTvSeries(): OperationResult<TvSeries> {
+    override suspend fun retrieveTvShows(): OperationResult<TvShows> {
         try {
-            val response = ApiClient.build()?.tvSeries()
+            val response = ApiClient.build()?.tvShows()
             response?.let {
                 return if(it.isSuccessful && it.body()!=null){
                     val data = it.body()?.data

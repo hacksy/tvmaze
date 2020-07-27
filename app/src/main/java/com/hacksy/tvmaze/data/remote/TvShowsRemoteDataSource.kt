@@ -1,9 +1,9 @@
 package com.hacksy.tvmaze.data.remote
 
 import com.hacksy.tvmaze.data.OperationResult
-import com.hacksy.tvmaze.model.TvSeries
+import com.hacksy.tvmaze.model.TvShows
 
 
 interface TvShowsRemoteDataSource {
-    suspend fun retrieveTvSeries(): OperationResult<TvSeries>
+    suspend fun retrieveTvShows(): OperationResult<TvShows>
 }

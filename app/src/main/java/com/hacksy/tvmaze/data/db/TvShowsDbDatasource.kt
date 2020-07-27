@@ -10,18 +10,18 @@ class TvShowsDbDatasource(context:Context):DbDataSource {
     init {
         val db = TvShowsDatabase.getInstance(context)
         db?.let {
-            tvShowsDao = it.tvSeriesDao()
+            tvShowsDao = it.tvShowsDao()
         }
     }
-    override fun tvSeries(): LiveData<List<TvShowsDTO>> {
-        return tvShowsDao.tvSeries()
+    override fun tvShows(): LiveData<List<TvShowsDTO>> {
+        return tvShowsDao.tvShows()
     }
 
-    override suspend fun addTvSeries(shows: List<TvShowsDTO>) {
-        return tvShowsDao.addTvSeries(shows)
+    override suspend fun addTvShows(shows: List<TvShowsDTO>) {
+        return tvShowsDao.addTvShows(shows)
     }
 
-    override suspend fun deleteAllTVSeries() {
-        tvShowsDao.deleteAllTvSeries()
+    override suspend fun deleteAllTvShows() {
+        tvShowsDao.deleteAllTvShows()
     }
 }

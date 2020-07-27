@@ -10,7 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hacksy.tvmaze.R
 import com.hacksy.tvmaze.di.Injection
 import com.hacksy.tvmaze.model.TvShows
+import com.hacksy.tvmaze.viewmodel.TvShowsViewModel
+import com.hacksy.tvmaze.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_home_tv_shows.*
+import kotlinx.android.synthetic.main.layout_error.*
 
 class HomeTvShowsActivity : AppCompatActivity() {
 
@@ -28,15 +31,16 @@ class HomeTvShowsActivity : AppCompatActivity() {
     }
 
     private fun setupUI(){
-        adapter= TvShowsAdapter(viewModel.museums.value?: emptyList())
+        adapter= TvShowsAdapter(viewModel.tvShows.value?: emptyList())
         recyclerView.layoutManager= LinearLayoutManager(this)
         recyclerView.adapter= adapter
     }
 
     private fun setupViewModel(){
-        viewModel = ViewModelProvider(this,ViewModelFactory(
+        viewModel = ViewModelProvider(this, ViewModelFactory(
             Injection.providerRemoteRepository(),
-            Injection.providerDBRepository())).get(TvShowViewModel::class.java)
+            Injection.providerDBRepository())
+        ).get(TvShowsViewModel::class.java)
         viewModel.tvShows.observe(this,renderTvShows)
 
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)

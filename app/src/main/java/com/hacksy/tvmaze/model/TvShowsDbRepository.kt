@@ -7,11 +7,11 @@ import com.hacksy.tvmaze.data.db.TvShowsDTO
 
 class TvShowsDbRepository(private val dataSource: DbDataSource) {
 
-    fun getTvShows(): LiveData<List<TvSeries>> {
-        return Transformations.map(dataSource.tvSeries()) {
+    fun getTvShows(): LiveData<List<TvShows>> {
+        return Transformations.map(dataSource.tvShows()) {
             it.map { itItem ->
                 //TODO: Constructor is too big, should Refactor
-                TvSeries(
+                TvShows(
                     itItem.id,
                     itItem.name,
                     itItem.image,
@@ -26,9 +26,9 @@ class TvShowsDbRepository(private val dataSource: DbDataSource) {
         }
     }
 
-    suspend fun sync(tvSeriesList: List<TvSeries>) {
-        dataSource.deleteAllTVSeries()
-        dataSource.addTvSeries(tvSeriesList.map {
+    suspend fun sync(tvShowsList: List<TvShows>) {
+        dataSource.deleteAllTvShows()
+        dataSource.addTvShows(tvShowsList.map {
             //TODO: Constructor is too big, should Refactor
             TvShowsDTO(
                 it.id,

@@ -8,11 +8,11 @@ import androidx.room.RoomDatabase
 @Database(entities = [TvShowsDTO::class], version = 1)
 abstract class TvShowsDatabase: RoomDatabase() {
 
-    abstract fun tvSeriesDao(): TvShowsDao
+    abstract fun tvShowsDao(): TvShowsDao
 
     companion object {
         private var INSTANCE: TvShowsDatabase? = null
-        private const val DBNAME="tvSeriesDatabase.db"
+        private const val DBNAME="tvShowsDatabase.db"
 
         fun getInstance(context: Context): TvShowsDatabase? {
             if (INSTANCE == null) {

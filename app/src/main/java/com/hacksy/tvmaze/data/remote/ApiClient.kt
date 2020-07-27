@@ -36,6 +36,6 @@ object ApiClient {
 
     interface ServicesApiInterface{
         @GET("search/shows?q=girls")
-        suspend fun tvSeries(): Response<TvShowsResponse>
+        suspend fun tvShows(): Response<TvShowsResponse>
     }
 }

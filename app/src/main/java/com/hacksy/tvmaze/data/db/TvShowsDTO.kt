@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 
-@Entity(tableName = "tb_tv_series")
+@Entity(tableName = "tb_tv_shows")
 data class TvShowsDTO(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "name") val name: String,
