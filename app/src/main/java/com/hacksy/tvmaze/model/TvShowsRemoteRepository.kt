@@ -11,10 +11,13 @@ class TvShowsRemoteRepository: TvShowsRemoteDataSource {
             val response = ApiClient.build()?.tvShows()
             response?.let {
                 return if(it.isSuccessful && it.body()!=null){
-                    val data = it.body()?.data
-                    OperationResult.Success(data)
+                    val data = it.body()
+                    OperationResult.Success(data?.map { it ->
+                        it.show;
+
+                    });
                 }else{
-                    val message = it.body()?.msg
+                    val message = "Error message"
                     OperationResult.Error(Exception(message))
                 }
             }?:run{

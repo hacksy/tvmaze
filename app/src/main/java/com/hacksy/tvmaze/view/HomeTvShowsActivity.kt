@@ -45,6 +45,7 @@ class HomeTvShowsActivity : AppCompatActivity() {
 
         viewModel.isViewLoading.observe(this,isViewLoadingObserver)
     }
+    
     //TODO: Use Timber instead of Log.v
     private val renderTvShows= Observer<List<TvShows>> {
         Log.v(TAG, "data updated $it")

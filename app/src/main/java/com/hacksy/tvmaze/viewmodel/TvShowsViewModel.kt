@@ -1,5 +1,6 @@
 package com.hacksy.tvmaze.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,6 +29,7 @@ class TvShowsViewModel(private val remoteRepository: TvShowsRemoteDataSource,
                 remoteRepository.retrieveTvShows()
             }
             _isViewLoading.postValue(false)
+            Log.w("TAGTAG",result.toString());
             if(result is OperationResult.Success){
                 withContext((Dispatchers.IO)) {
                     result.data?.let {

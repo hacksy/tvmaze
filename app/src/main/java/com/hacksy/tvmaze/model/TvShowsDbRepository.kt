@@ -14,13 +14,15 @@ class TvShowsDbRepository(private val dataSource: DbDataSource) {
                 TvShows(
                     itItem.id,
                     itItem.name,
-                    itItem.image,
-                    itItem.genres,
+                    Image(itItem.image),
+                    itItem.genres.split(","),
                     itItem.summary,
-                    itItem.scheduleTime,
-                    itItem.scheduleDays,
-                    itItem.scheduleRating,
-                    itItem.scheduleWeight
+                    Schedule(
+                        itItem.scheduleTime,
+                        itItem.scheduleDays.split(",")
+                    ),
+                    Rating(itItem.rating),
+                    itItem.weight
                 )
             }
         }
@@ -33,13 +35,13 @@ class TvShowsDbRepository(private val dataSource: DbDataSource) {
             TvShowsDTO(
                 it.id,
                 it.name,
-                it.image,
-                it.genres,
+                it.genres.joinToString { "," },
+                it.image?.medium,
                 it.summary,
-                it.scheduleTime,
-                it.scheduleDays,
-                it.scheduleRating,
-                it.scheduleWeight
+                it.schedule.time,
+                it.schedule.days.joinToString { "," },
+                it.rating.average,
+                it.weight
             )
         })
     }

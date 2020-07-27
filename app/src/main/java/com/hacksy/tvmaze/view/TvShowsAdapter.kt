@@ -39,7 +39,7 @@ class TvShowsAdapter(private var tvShows:List<TvShows>): RecyclerView.Adapter<Tv
 
         fun bind(tvShow:TvShows){
             textViewName.text = tvShow.name
-            Glide.with(imageView.context).load(tvShow.image).into(imageView)
+            Glide.with(imageView.context).load(tvShow.image?.medium).into(imageView)
         }
     }
 }

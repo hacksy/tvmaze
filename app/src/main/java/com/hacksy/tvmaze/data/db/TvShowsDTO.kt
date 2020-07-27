@@ -10,11 +10,11 @@ data class TvShowsDTO(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "genres") val genres: String,
-    @ColumnInfo(name = "image") val image: String,
+    @ColumnInfo(name = "image") val image: String?,
     @ColumnInfo(name = "summary") val summary: String,
     //Schedule fields
     @ColumnInfo(name = "scheduleTime") val scheduleTime: String,
     @ColumnInfo(name = "scheduleDays") val scheduleDays: String,
-    @ColumnInfo(name = "scheduleRating") val scheduleRating: String,
-    @ColumnInfo(name = "scheduleWeight") val scheduleWeight: String
+    @ColumnInfo(name = "rating") val rating: Double,
+    @ColumnInfo(name = "weight") val weight: String
 )
