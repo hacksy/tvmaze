@@ -5,22 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [TvSeriesDTO::class], version = 1)
-abstract class TvSeriesDatabase: RoomDatabase() {
+@Database(entities = [TvShowsDTO::class], version = 1)
+abstract class TvShowsDatabase: RoomDatabase() {
 
-    abstract fun tvSeriesDao(): TvSeriesDao
+    abstract fun tvSeriesDao(): TvShowsDao
     abstract fun scheduleDao(): ScheduleDTO
     abstract fun episodesDao(): EpisodesDTO
 
     companion object {
-        private var INSTANCE: TvSeriesDatabase? = null
+        private var INSTANCE: TvShowsDatabase? = null
         private const val DBNAME="tvSeriesDatabase.db"
 
-        fun getInstance(context: Context): TvSeriesDatabase? {
+        fun getInstance(context: Context): TvShowsDatabase? {
             if (INSTANCE == null) {
-                synchronized(TvSeriesDatabase::class) {
+                synchronized(TvShowsDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context,
-                        TvSeriesDatabase::class.java, DBNAME)
+                        TvShowsDatabase::class.java, DBNAME)
                         .build()
                 }
             }

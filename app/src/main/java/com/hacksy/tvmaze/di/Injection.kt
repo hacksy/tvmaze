@@ -2,22 +2,23 @@ package com.hacksy.tvmaze.di
 
 import android.content.Context
 import com.hacksy.tvmaze.data.db.DbDataSource
-import com.hacksy.tvmaze.data.db.TvSeriesDbDatasource
-import com.hacksy.tvmaze.data.remote.TvSeriesRemoteDataSource
-import com.hacksy.tvmaze.model.TvSeriesDbRepository
-import com.hacksy.tvmaze.model.TvSeriesRemoteRepository
+import com.hacksy.tvmaze.data.db.TvShowsDbDatasource
+import com.hacksy.tvmaze.data.remote.TvShowsRemoteDataSource
+import com.hacksy.tvmaze.model.TvShowsDbRepository
+import com.hacksy.tvmaze.model.TvShowsRemoteRepository
+
 
 object Injection {
-    private val museumRepository = TvSeriesRemoteRepository()
+    private val museumRepository = TvShowsRemoteRepository()
 
     private lateinit var dbDataSource:DbDataSource
-    private lateinit var museumDbRepository:TvSeriesDbRepository
+    private lateinit var museumDbRepository: TvShowsDbRepository
 
     fun setup(context: Context){
-        dbDataSource = TvSeriesDbDatasource(context)
-        museumDbRepository = TvSeriesDbRepository(dbDataSource)
+        dbDataSource = TvShowsDbDatasource(context)
+        museumDbRepository = TvShowsDbRepository(dbDataSource)
     }
 
-    fun providerDBRepository(): TvSeriesDbRepository = museumDbRepository
-    fun providerRemoteRepository(): TvSeriesRemoteDataSource = museumRepository
+    fun providerDBRepository(): TvShowsDbRepository = museumDbRepository
+    fun providerRemoteRepository(): TvShowsRemoteDataSource = museumRepository
 }

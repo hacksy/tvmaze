@@ -2,9 +2,9 @@ package com.hacksy.tvmaze.model
 
 import com.hacksy.tvmaze.data.OperationResult
 import com.hacksy.tvmaze.data.remote.ApiClient
-import com.hacksy.tvmaze.data.remote.TvSeriesRemoteDataSource
+import com.hacksy.tvmaze.data.remote.TvShowsRemoteDataSource
 
-class TvSeriesRemoteRepository: TvSeriesRemoteDataSource {
+class TvShowsRemoteRepository: TvShowsRemoteDataSource {
 
     override suspend fun retrieveTvSeries(): OperationResult<TvSeries> {
         try {

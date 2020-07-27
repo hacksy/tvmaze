@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 
 @Entity(tableName = "tb_tv_series")
-data class TvSeriesDTO(
+data class TvShowsDTO(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "genres") val genres: String,

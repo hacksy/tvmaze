@@ -4,6 +4,6 @@ import com.hacksy.tvmaze.data.OperationResult
 import com.hacksy.tvmaze.model.TvSeries
 
 
-interface TvSeriesRemoteDataSource {
+interface TvShowsRemoteDataSource {
     suspend fun retrieveTvSeries(): OperationResult<TvSeries>
 }

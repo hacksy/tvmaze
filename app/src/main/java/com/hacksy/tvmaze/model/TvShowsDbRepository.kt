@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.hacksy.tvmaze.data.db.DbDataSource
 import com.hacksy.tvmaze.data.db.ScheduleDTO
-import com.hacksy.tvmaze.data.db.TvSeriesDTO
+import com.hacksy.tvmaze.data.db.TvShowsDTO
 
-class TvSeriesDbRepository(private val dataSource: DbDataSource) {
+class TvShowsDbRepository(private val dataSource: DbDataSource) {
 
     fun getMuseums(): LiveData<List<TvSeries>> {
         return Transformations.map(dataSource.tvSeries()){
@@ -19,7 +19,7 @@ class TvSeriesDbRepository(private val dataSource: DbDataSource) {
     suspend fun sync(tvSeriesList:List<TvSeries>){
         dataSource.deleteAllTVSeries()
         dataSource.addTvSeries(tvSeriesList.map {
-            TvSeriesDTO(it.id,it.name, it.image, it.genres, it.summary, ScheduleDTO(1,"","","",""))
+            TvShowsDTO(it.id,it.name, it.image, it.genres, it.summary, ScheduleDTO(1,"","","",""))
         })
     }
 }
