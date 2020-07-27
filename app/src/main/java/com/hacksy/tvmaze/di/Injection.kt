@@ -9,16 +9,16 @@ import com.hacksy.tvmaze.model.TvShowsRemoteRepository
 
 
 object Injection {
-    private val museumRepository = TvShowsRemoteRepository()
+    private val tvShowsRepository = TvShowsRemoteRepository()
 
     private lateinit var dbDataSource:DbDataSource
-    private lateinit var museumDbRepository: TvShowsDbRepository
+    private lateinit var tvShowsDbRepository: TvShowsDbRepository
 
     fun setup(context: Context){
         dbDataSource = TvShowsDbDatasource(context)
-        museumDbRepository = TvShowsDbRepository(dbDataSource)
+        tvShowsDbRepository = TvShowsDbRepository(dbDataSource)
     }
 
-    fun providerDBRepository(): TvShowsDbRepository = museumDbRepository
-    fun providerRemoteRepository(): TvShowsRemoteDataSource = museumRepository
+    fun providerDBRepository(): TvShowsDbRepository = tvShowsDbRepository
+    fun providerRemoteRepository(): TvShowsRemoteDataSource = tvShowsRepository
 }
