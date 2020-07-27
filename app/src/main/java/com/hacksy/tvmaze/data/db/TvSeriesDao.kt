@@ -10,11 +10,11 @@ import androidx.room.OnConflictStrategy.REPLACE
 @Dao
 interface TvSeriesDao {
     @Query("SELECT * from tb_tv_series")
-    fun museums(): LiveData<List<TvSeriesDTO>>
+    fun tvSeries(): LiveData<List<TvSeriesDTO>>
 
     @Insert(onConflict = REPLACE)
-    suspend fun add(museum: List<TvSeriesDTO>)
+    suspend fun addTvSeries(museum: List<TvSeriesDTO>)
 
     @Query("DELETE from tb_tv_series")
-    suspend fun deleteAll()
+    suspend fun deleteAllTvSeries()
 }
