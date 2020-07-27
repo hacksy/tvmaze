@@ -9,7 +9,7 @@ import retrofit2.http.GET
 
 object ApiClient {
 
-    private val API_BASE_URL = "http://api.tvmaze.com/"
+    private val API_BASE_URL = "https://api.tvmaze.com/"
 
     private var servicesApiInterface: ServicesApiInterface?=null
 
