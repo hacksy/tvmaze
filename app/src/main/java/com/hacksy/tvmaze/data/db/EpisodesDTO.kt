@@ -6,8 +6,8 @@ import java.sql.Date
 
 @Entity(tableName = "tb_episodes")
 data class EpisodesDTO(
-    @PrimaryKey val id: Int,
-    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "episodeId") @PrimaryKey val episodeId: Int,
+    @ColumnInfo(name = "episodeName") val episodeName: String,
     @ColumnInfo(name = "season") val season: Integer,
     @ColumnInfo(name = "number") val number: Integer,
     @TypeConverters(DateConverter::class)

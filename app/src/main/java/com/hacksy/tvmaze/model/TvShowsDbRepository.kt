@@ -3,23 +3,44 @@ package com.hacksy.tvmaze.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.hacksy.tvmaze.data.db.DbDataSource
-import com.hacksy.tvmaze.data.db.ScheduleDTO
 import com.hacksy.tvmaze.data.db.TvShowsDTO
 
 class TvShowsDbRepository(private val dataSource: DbDataSource) {
 
-    fun getMuseums(): LiveData<List<TvSeries>> {
-        return Transformations.map(dataSource.tvSeries()){
-            it.map {itItem ->
-                TvSeries(itItem.id,itItem.name, itItem.image, itItem.genres, itItem.summary)
+    fun getTvShows(): LiveData<List<TvSeries>> {
+        return Transformations.map(dataSource.tvSeries()) {
+            it.map { itItem ->
+                //TODO: Constructor is too big, should Refactor
+                TvSeries(
+                    itItem.id,
+                    itItem.name,
+                    itItem.image,
+                    itItem.genres,
+                    itItem.summary,
+                    itItem.scheduleTime,
+                    itItem.scheduleDays,
+                    itItem.scheduleRating,
+                    itItem.scheduleWeight
+                )
             }
         }
     }
 
-    suspend fun sync(tvSeriesList:List<TvSeries>){
+    suspend fun sync(tvSeriesList: List<TvSeries>) {
         dataSource.deleteAllTVSeries()
         dataSource.addTvSeries(tvSeriesList.map {
-            TvShowsDTO(it.id,it.name, it.image, it.genres, it.summary, ScheduleDTO(1,"","","",""))
+            //TODO: Constructor is too big, should Refactor
+            TvShowsDTO(
+                it.id,
+                it.name,
+                it.image,
+                it.genres,
+                it.summary,
+                it.scheduleTime,
+                it.scheduleDays,
+                it.scheduleRating,
+                it.scheduleWeight
+            )
         })
     }
 }

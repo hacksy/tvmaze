@@ -12,5 +12,9 @@ data class TvShowsDTO(
     @ColumnInfo(name = "genres") val genres: String,
     @ColumnInfo(name = "image") val image: String,
     @ColumnInfo(name = "summary") val summary: String,
-    @Embedded val schedule: ScheduleDTO?
+    //Schedule fields
+    @ColumnInfo(name = "scheduleTime") val scheduleTime: String,
+    @ColumnInfo(name = "scheduleDays") val scheduleDays: String,
+    @ColumnInfo(name = "scheduleRating") val scheduleRating: String,
+    @ColumnInfo(name = "scheduleWeight") val scheduleWeight: String
 )

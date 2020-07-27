@@ -9,8 +9,6 @@ import androidx.room.RoomDatabase
 abstract class TvShowsDatabase: RoomDatabase() {
 
     abstract fun tvSeriesDao(): TvShowsDao
-    abstract fun scheduleDao(): ScheduleDTO
-    abstract fun episodesDao(): EpisodesDTO
 
     companion object {
         private var INSTANCE: TvShowsDatabase? = null
