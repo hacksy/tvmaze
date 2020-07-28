@@ -7,11 +7,13 @@ data class TvShows(
     val id: Int,
     val name: String,
     val image: Image?,
-    val genres: List<String>,
+    val genres: List<String>?,
     val summary: String,
     val schedule: Schedule,
     val rating  : Rating,
-    val weight: String
+    val weight: String,
+    val favorite:Boolean=false,
+    val currentQuery: Boolean = true
 ) : Serializable
 
 

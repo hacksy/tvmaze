@@ -2,4 +2,5 @@
     <string name="app_name">TVMaze</string>
     <string name="empty_list">No se encontró shows de Tv</string>
     <string name="an_error_occurred">Ocurrió un error</string>
+    <string name="hint_search">Ingrese el término de busqueda</string>
 </resources>

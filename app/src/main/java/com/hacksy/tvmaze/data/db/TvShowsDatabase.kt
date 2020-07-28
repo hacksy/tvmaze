@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [TvShowsDTO::class], version = 1)
+@Database(entities = [TvShowsDTO::class,EpisodesDTO::class], version = 1)
 abstract class TvShowsDatabase: RoomDatabase() {
 
     abstract fun tvShowsDao(): TvShowsDao
+    abstract fun episodesDao(): EpisodesDAO
 
     companion object {
         private var INSTANCE: TvShowsDatabase? = null

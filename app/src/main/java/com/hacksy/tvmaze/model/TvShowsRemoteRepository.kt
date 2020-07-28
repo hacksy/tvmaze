@@ -1,6 +1,7 @@
 package com.hacksy.tvmaze.model
 
 import com.hacksy.tvmaze.data.OperationResult
+import com.hacksy.tvmaze.data.SingleOperationResult
 import com.hacksy.tvmaze.data.remote.ApiClient
 import com.hacksy.tvmaze.data.remote.TvShowsRemoteDataSource
 
@@ -12,10 +13,7 @@ class TvShowsRemoteRepository: TvShowsRemoteDataSource {
             response?.let {
                 return if(it.isSuccessful && it.body()!=null){
                     val data = it.body()
-                    OperationResult.Success(data?.map { it ->
-                        it.show;
-
-                    });
+                    OperationResult.Success(data);
                 }else{
                     val message = "Error message"
                     OperationResult.Error(Exception(message))
@@ -27,7 +25,24 @@ class TvShowsRemoteRepository: TvShowsRemoteDataSource {
             return OperationResult.Error(e)
         }
     }
-
+    override suspend fun getEpisodesByTvShow(tvShowId: String ) : OperationResult<TvEpisodes> {
+        try {
+            val response = ApiClient.build()?.getTvEpisodes(tvShowId)
+            response?.let {
+                return if(it.isSuccessful && it.body()!=null){
+                    val data = it.body()
+                    OperationResult.Success(data);
+                }else{
+                    val message = "Error message"
+                    OperationResult.Error(Exception(message))
+                }
+            }?:run{
+                return OperationResult.Error(Exception("Ocurrió un error"))
+            }
+        }catch (e:Exception){
+            return OperationResult.Error(e)
+        }
+    }
     override suspend fun searchTvShows(show: String): OperationResult<TvShows> {
         try {
             val response = ApiClient.build()?.searchTvShows(show)
@@ -49,5 +64,7 @@ class TvShowsRemoteRepository: TvShowsRemoteDataSource {
             return OperationResult.Error(e)
         }
     }
+
+
 
 }

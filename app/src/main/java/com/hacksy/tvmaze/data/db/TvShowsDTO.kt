@@ -16,5 +16,7 @@ data class TvShowsDTO(
     @ColumnInfo(name = "scheduleTime") val scheduleTime: String,
     @ColumnInfo(name = "scheduleDays") val scheduleDays: String,
     @ColumnInfo(name = "rating") val rating: Double,
-    @ColumnInfo(name = "weight") val weight: String
+    @ColumnInfo(name = "weight") val weight: String,
+    @ColumnInfo(name = "favorite") val favorite: Boolean,
+    @ColumnInfo(name = "current_query") val currentQuery: Boolean
 )

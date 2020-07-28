@@ -19,8 +19,8 @@ class TvShowsViewModel(private val remoteRepository: TvShowsRemoteDataSource,
 
     private val _isViewLoading= MutableLiveData<Boolean>()
     val isViewLoading: LiveData<Boolean> = _isViewLoading
-
-    val tvShows = dbRepository.getTvShows()
+    var isEmpty = MutableLiveData<Boolean>();
+    val tvShows = dbRepository.getNonDeprecatedTvShows()
 
     fun listTvShows(page : Int = 1){
         _isViewLoading.postValue(true)
@@ -29,14 +29,27 @@ class TvShowsViewModel(private val remoteRepository: TvShowsRemoteDataSource,
                 remoteRepository.listTvShows(page)
             }
             _isViewLoading.postValue(false)
-            Log.w("TAGTAG",result.toString());
             if(result is OperationResult.Success){
                 withContext((Dispatchers.IO)) {
                     result.data?.let {
-                        if (it.isNotEmpty()) dbRepository.sync(it)
+                        if(it.isEmpty()){
+                            isEmpty.postValue(true)
+                        }else{
+                            isEmpty.postValue(false)
+                            dbRepository.append(it)
+                        }
                     }
                 }
             }
+        }
+    }
+
+    fun checkForUpdates(s: String){
+        android.util.Log.w("Debounced String", s);
+        if(s.isNullOrEmpty()){
+            listTvShows(1);
+        }else{
+            searchTvShows(s);
         }
     }
     fun searchTvShows(show : String){
@@ -46,11 +59,16 @@ class TvShowsViewModel(private val remoteRepository: TvShowsRemoteDataSource,
                 remoteRepository.searchTvShows(show)
             }
             _isViewLoading.postValue(false)
-            Log.w("TAGTAG",result.toString());
             if(result is OperationResult.Success){
                 withContext((Dispatchers.IO)) {
                     result.data?.let {
-                        if (it.isNotEmpty()) dbRepository.sync(it)
+                        if(it.isEmpty()){
+                            Log.w("Updating Empty","Updated");
+                            isEmpty.postValue(true)
+                        }else{
+                            isEmpty.postValue(false)
+                            dbRepository.sync(it);
+                        }
                     }
                 }
             }
